@@ -1,0 +1,20 @@
+{
+  "name": "blostem-battlecard",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000"
+  },
+  "dependencies": {
+    "@mendable/firecrawl-js": "^4.18.0",
+    "axios": "^1.4.0",
+    "marked": "^5.0.2",
+    "next": "^16.2.4",
+    "openai": "^4.5.0",
+    "puppeteer": "^22.15.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}

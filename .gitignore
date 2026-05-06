@@ -1,0 +1,16 @@
+.next/
+node_modules/
+
+.env
+.env.local
+.env.*.local
+
+data/*.png
+data/last-*.json
+data/last-*.md
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+blostem-pipeline-check.png
