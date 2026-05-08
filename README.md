@@ -1,22 +1,22 @@
 # Blostem — Competitive Intelligence Battlecard Generator
 
-**Live competitive intelligence for sales teams in <60 seconds.**
+**Evidence-governed competitive intelligence for fintech sales teams in <60 seconds.**
 
-> **MVP Status:** ✅ Production-Ready | [Quick Start (2 min)](./QUICK_START.md) | [Features](./FEATURES_SUMMARY.md) | [Deployment](./DEPLOYMENT_GUIDE.md)
+> **MVP Status:** Working hackathon prototype with live retrieval/LLM paths, curated demo fallback, and claim-level evidence review.
 
 ## Problem
-AEs lose 30% of pipeline when they lack real-time competitive intel. Researching one competitor takes 3–5 hours. Executives need positioning, pricing, sentiment, and talk-tracks *during* a live call.
+AEs lose deals when they lack timely, source-backed competitive intel. Researching one competitor takes hours, and enterprise buyers care less about generic battlecards than proof: pricing behavior, settlement risk, compliance posture, integration maturity, and what can be safely said in a deal.
 
 ## Solution
-Blostem Battlecard is a trustable sales-intelligence pipeline: retrieval-heavy, evidence-linked, and LLM-refined. It turns competitor research into a one-page, actionable battlecard with pipeline provenance, confidence scoring, and **Claim Trace** for AE talk tracks.
+Blostem Battlecard is a trust-oriented sales-intelligence pipeline: retrieval-heavy, evidence-linked, and LLM-refined. It turns competitor research into an AE live brief with pipeline provenance, confidence scoring, blocked claims, contradiction flags, and buyer verification cues.
 
-## Unique Differentiator: Claim Trace
-Every competitive claim is paired with:
-- **Confidence score**: Data-backed credibility
-- **AE rebuttal**: Immediate counter-narrative for live calls
-- **Market opportunity**: Growth vectors the competitor hasn't tapped
+## Unique Differentiator: Claims & Evidence Review
+Every competitive claim is classified into:
+- **Use externally**: linked evidence supports the exact claim
+- **Ask, do not assert**: useful clue, but only safe as a buyer question
+- **Do not use externally**: blocked because evidence is weak, stale, contradictory, or unsupported
 
-Turns passive reports into active AE weapons.
+The goal is not to script AEs. It is to stop bad claims and surface the few operational clues worth using in enterprise conversations.
 
 ---
 
@@ -27,7 +27,7 @@ Turns passive reports into active AE weapons.
 | [**QUICK_START.md**](./QUICK_START.md) | ⚡ Get running in 2 minutes |
 | [**FEATURES_SUMMARY.md**](./FEATURES_SUMMARY.md) | 📋 All features & accomplishments |
 | [**DEPLOYMENT_GUIDE.md**](./DEPLOYMENT_GUIDE.md) | 📦 Production deployment (Vercel, Docker, AWS) |
-| [**DEMO_NARRATIVE.md**](./DEMO_NARRATIVE.md) | 🎬 3-minute pitch script |
+| [**DEMO_NARRATIVE.md**](./DEMO_NARRATIVE.md) | 3-minute demo narrative |
 | [**PROJECT_SUMMARY.md**](./PROJECT_SUMMARY.md) | 🏗️ Architecture & internals |
 
 ---
@@ -93,10 +93,10 @@ Open http://localhost:3000 in your browser.
 - `lib/extractSignals.js` — Evidence-backed signal extraction
 - `lib/buildCompetitorModel.js` — Structured competitor model builder
 - `lib/generateBattlecardCore.js` — Core battlecard synthesis
-- `lib/generateSalesLayer.js` — Objections, talk tracks, and strategy
+- `lib/generateSalesLayer.js` — Buyer verification cues, procurement risk, and strategy
 - `lib/confidenceEngine.js` — Deterministic confidence + evidence panel
 - `lib/validateBattlecard.js` — Soft validation warnings
-- `lib/citations.js` — Citation formatting + **Claim Trace generation**
+- `lib/citations.js` — Citation formatting + claims/evidence review
 
 ### Data Flow
 ```
@@ -108,11 +108,11 @@ Competitor Name
   ↓
 [Competitor Model] → target segment, pricing model, strengths, weaknesses
   ↓
-[Battlecard Core + Sales Layer] → claims, attack angles, objections, live scripts
+[Battlecard Core + Sales Layer] → claims, verification angles, procurement concerns
   ↓
 [Confidence + Validation] → claim evidence links, confidence levels, warnings
   ↓
-[Render] → Battlecard + Pipeline Provenance + Claim Trace
+[Render] → AE live brief + Pipeline Provenance + Claims & Evidence Review
 ```
 
 ---
@@ -124,9 +124,9 @@ Competitor Name
 
 **Demo (90 sec):**
 1. Enter "Razorpay" → Generate battlecard in 30 seconds
-2. Show full battlecard with positioning, pricing, recent launches
-3. Switch to Claim Trace tab → show auto-generated rebuttals
-4. Highlight confidence scores and market opportunities
+2. Show AE live brief: use externally, ask-only, and blocked claims
+3. Show Claims & Evidence Review with source quality and contradictions
+4. Highlight procurement questions and evidence caveats
 5. Export to Markdown
 
 **Extension (30 sec):**
@@ -222,10 +222,10 @@ Use FAISS to embed sources and retrieve context-aware snippets for LLM.
 |------|---------|
 | `pages/index.js` | Main UI (input + results + tabs) |
 | `pages/api/query.js` | API orchestrator |
-| `lib/generateBattlecard.js` | Battlecard + Claim Trace synthesis |
+| `lib/generateBattlecard.js` | Battlecard + AE live brief synthesis |
 | `lib/llm.js` | LLM API wrapper |
 | `lib/retrieval.js` | Source fetching + scoring |
-| `lib/citations.js` | Citation formatting + **Claim Trace** |
+| `lib/citations.js` | Citation formatting + claims/evidence review |
 | `package.json` | Dependencies |
 | `.env.example` | Environment template |
 
@@ -244,12 +244,12 @@ Use FAISS to embed sources and retrieve context-aware snippets for LLM.
 ✓ API routes + frontend integrated
 
 ### Innovation & Thinking (20%)
-✓ **Claim Trace**: Unique differentiator (rebuttals + opportunities, not just facts)
+✓ **Claims & Evidence Review**: Use externally / ask-only / blocked claim workflow
 ✓ Confidence scoring (data credibility signal)
-✓ Multi-view UI (battlecard + Claim Trace tabs)
+✓ Multi-view UI (AE live brief + source trace + trust review)
 
 ### Demo & Narrative (20%)
-✓ Clean 30/90/30 script
+✓ Clean 30/90/30 demo narrative
 ✓ Live demo runs in <60s
 ✓ Output is immediately usable (Markdown export)
 

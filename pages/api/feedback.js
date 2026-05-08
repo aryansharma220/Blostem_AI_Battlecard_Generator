@@ -67,7 +67,6 @@ export default async function handler(req, res) {
       const allowed = {
         id: incoming.id || `fb_${Date.now()}`,
         competitor: incoming.competitor || incoming.competitor || 'unknown',
-        dealStage: incoming.dealStage || 'unknown',
         outcome: incoming.outcome || 'helpful',
         scope: incoming.scope || 'battlecard',
         target: incoming.target || 'overall',
