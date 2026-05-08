@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 
 const QUICK = ["Razorpay", "Paytm", "PhonePe"];
 
+const PROJECT_NAME = "RivalSense";
+
 const colors = {
   bg: "#070A0F",
   surface: "#0D131B",
@@ -875,19 +877,31 @@ export default function Home() {
 
       <div style={styles.shell}>
         <header style={styles.header}>
-          <div>
-            <div style={styles.brand}>BL AI Battlecard Studio</div>
-            <h1 style={styles.h1}>Competitive intel judges can trust at a glance</h1>
+          <div style={styles.headerLeft}>
+            <div style={styles.projectRow}>
+              <div style={styles.logo}>{PROJECT_NAME.charAt(0)}</div>
+              <div style={{ marginLeft: 12 }}>
+                <div style={styles.projectName}>{PROJECT_NAME}</div>
+                <div style={styles.projectDescriptor}>Battlecard Studio — Evidence-backed intel</div>
+              </div>
+            </div>
+
+            <h1 style={styles.h1}>Actionable competitive intelligence, trusted at a glance</h1>
             <p style={styles.subhead}>
-              Enter a competitor. We pull evidence, score it, and surface the few signals that matter.
+              Type a competitor and get a concise, evidence-linked battlecard — retrieval, contradiction checks, confidence scoring, and a verification path.
             </p>
           </div>
+
           <div style={styles.headerMeta}>
-            <Badge tone="info">Live AI synthesis</Badge>
-            <Badge tone="success">Evidence-linked output</Badge>
-            <button style={styles.ghostButton} onClick={() => setCompactView((current) => !current)}>
-              {compactView ? "Full view" : "Compact view"}
-            </button>
+            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <Badge tone="info">Live AI Synthesis</Badge>
+              <Badge tone="success">Evidence-Linked Output</Badge>
+            </div>
+            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <button style={styles.ghostButton} onClick={() => setCompactView((current) => !current)}>
+                {compactView ? "Full view" : "Compact view"}
+              </button>
+            </div>
           </div>
         </header>
 
@@ -1275,6 +1289,47 @@ const styles = {
     gap: 24,
     alignItems: "flex-start",
     marginBottom: 22,
+    padding: 18,
+    borderRadius: 12,
+    background: `linear-gradient(180deg, rgba(83,214,255,0.04), rgba(51,224,182,0.02))`,
+    border: `1px solid rgba(83,214,255,0.08)`,
+    boxShadow: "0 8px 30px rgba(3,10,18,0.45)",
+  },
+  headerLeft: {
+    display: "grid",
+    gap: 10,
+    flex: "1 1 720px",
+    minWidth: 0,
+  },
+  projectRow: {
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+  },
+  logo: {
+    width: 56,
+    height: 56,
+    borderRadius: 12,
+    background: `linear-gradient(135deg, ${colors.cyan}, ${colors.accent})`,
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontWeight: 900,
+    color: colors.bg,
+    fontSize: 22,
+  },
+  projectName: {
+    color: colors.text,
+    fontSize: 16,
+    fontWeight: 900,
+    letterSpacing: 0.6,
+  },
+  projectDescriptor: {
+    color: colors.muted,
+    fontSize: 12,
+    fontWeight: 800,
+    textTransform: "uppercase",
+    letterSpacing: 1,
   },
   brand: {
     color: colors.cyan,
@@ -1285,9 +1340,9 @@ const styles = {
   },
   h1: {
     margin: "8px 0 8px",
-    fontSize: 34,
-    lineHeight: 1.05,
-    letterSpacing: 0,
+    fontSize: 40,
+    lineHeight: 1.02,
+    letterSpacing: -0.2,
   },
   subhead: {
     margin: 0,
