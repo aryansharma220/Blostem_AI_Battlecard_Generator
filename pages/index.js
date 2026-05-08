@@ -272,7 +272,7 @@ function normalizeComparisonItem(item, fallbackLabel = "Item") {
 
 function ComparisonColumn({ title, tone, side = "us", items = [], empty }) {
   const visible = items.filter(Boolean).slice(0, 2);
-  const sideLabel = side === "us" ? "Blostem" : "Competitor";
+  const sideLabel = side === "us" ? "RivalSense" : "Competitor";
   return (
     <div style={side === "us" ? styles.compareColumnUs : styles.compareColumnThem}>
       <div style={styles.compareColumnHead}>
@@ -360,7 +360,7 @@ function buildBattlecardMarkdown({ result }) {
   const hiddenSignals = bc.hidden_signals || [];
   const compareVsUs = bc.compare_vs_us || {};
   const evidenceClaims = bc.evidence_linked_claims || [];
-  const wedge = bc.blostem_wedge || {};
+  const wedge = bc.rivalsense_wedge || {};
   const evidenceSources = bc.evidence_panel?.sources || [];
   const sources = evidenceSources.length ? evidenceSources : (pipeline.sources || []).map((source) => ({
     label: source.title,
@@ -428,7 +428,7 @@ function buildBattlecardMarkdown({ result }) {
   });
   if (!sentimentThemes.length) lines.push("No sentiment theme extracted.");
   lines.push("");
-  lines.push("## How Blostem Wins");
+  lines.push("## How RivalSense Wins");
   lines.push(cleanLine(wedge.headline || bc.how_to_win?.win_by || angles[0]?.angle || "Win with evidence-backed decision criteria."));
   lines.push(cleanLine(wedge.wedge || ""));
   lines.push(`Key buyer question: ${cleanLine(bc.how_to_win?.kill_question || angles[0]?.closing_question || angles[0]?.close || "Which vendor assumption needs proof at scale?")}`);
@@ -505,7 +505,7 @@ export default function Home() {
   const wins = battlecard.where_they_win || [];
   const hiddenSignals = battlecard.hidden_signals || [];
   const compareVsUs = battlecard.compare_vs_us || {};
-  const wedge = battlecard.blostem_wedge || {};
+  const wedge = battlecard.rivalsense_wedge || {};
   const pipelineSteps = pipeline.steps || [];
   const howToWin = battlecard.how_to_win || {};
   const validation = pipeline.validation || battlecard.validation || {};
@@ -625,7 +625,7 @@ export default function Home() {
   const topicSections = useMemo(() => {
     const pricingUs = [
       ...((compareVsUs.where_we_win || []).slice(0, 2).map((item) => normalizeComparisonItem(item, "Us pricing point"))),
-      normalizeComparisonItem({ point: pricingPosture.blostem_attack || pricingSignal?.so_what || pricingSignal?.signal, why_it_matters: pricingPosture.discovery_question }, "Our pricing wedge"),
+      normalizeComparisonItem({ point: pricingPosture.rivalsense_attack || pricingSignal?.so_what || pricingSignal?.signal, why_it_matters: pricingPosture.discovery_question }, "Our pricing wedge"),
     ].filter(Boolean);
     const pricingThem = [
       ...((compareVsUs.where_we_lose || []).slice(0, 2).map((item) => normalizeComparisonItem(item, "Their pricing risk"))),

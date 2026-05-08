@@ -1,10 +1,10 @@
 @echo off
-REM Blostem Battlecard — Quick Start Script (Windows)
+REM RivalSense — Competitive Intelligence & Battlecard Studio (Windows)
 REM This script installs dependencies and starts the dev server
 
 echo.
 echo ========================================
-echo  Blostem Competitive Intelligence Demo
+echo  RivalSense Competitive Intelligence Demo
 echo ========================================
 echo.
 
