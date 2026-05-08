@@ -25,12 +25,17 @@ npm install
 npm run dev
 ```
 
-- Required environment variables: set either `OPENROUTER_API_KEY` or `GROQ_API_KEY` (and optionally `LLM_PROVIDER` to `openrouter` or `groq`). Example (PowerShell):
+- Required environment variables: set either `OPENROUTER_API_KEY` or `GROQ_API_KEY` (and optionally `LLM_PROVIDER` to `openrouter` or `groq`). If you want live scraping and retrieval, also set `FIRECRAWL_API_KEY` plus one or both retriever keys: `TAVILY_API_KEY` and `SERPER_API_KEY`. Example (PowerShell):
 
 ```powershell
 $env:OPENROUTER_API_KEY = "your_key_here"
+$env:FIRECRAWL_API_KEY = "your_firecrawl_key_here"
+$env:TAVILY_API_KEY = "your_tavily_key_here"
+$env:SERPER_API_KEY = "your_serper_key_here"
 npm run dev
 ```
+
+- The scraper uses Firecrawl through `lib/scraper.js`, and the retrieval layer uses Tavily or Serper through `lib/retrieval.js`. If those keys are missing, the app can still start, but live source discovery will fall back to the available providers or to the curated fallback sources.
 
 - The API endpoints live under `pages/api/` (for example, `/api/query` and `/api/export`) and the battlecard generation logic is in `lib/`.
 
